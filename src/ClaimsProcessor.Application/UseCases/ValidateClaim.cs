@@ -7,7 +7,14 @@ namespace ClaimsProcessor.Application.UseCases
     {
         public ValidateClaimResponse Execute(IEnumerable<Claim> claim)
         {
-            throw new NotImplementedException();
+            var response = new ValidateClaimResponse();
+
+            response.TotalClaims = claim.Count();
+            response.ValidClaims = claim.Count(c => c.IsValid());
+            response.InvalidClaims = response.TotalClaims - response.ValidClaims;
+            response.TotalApprovedAmount = claim.Where(c => c.IsValid()).Sum(c => c.Amount);
+
+            return response;
         }
     }
 }

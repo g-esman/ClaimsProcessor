@@ -1,15 +1,36 @@
-﻿namespace ClaimsProcessor.Domain
+﻿using System.Text.RegularExpressions;
+
+namespace ClaimsProcessor.Domain
 {
-    public class Claim(int id,
-                string providerName,
-                decimal amount,
-                string diagnosisCode,
-                string status)
+    public class Claim
     {
-        public int Id { get; set; } = id;
-        public string ProviderName { get; set; } = providerName;
-        public decimal Amount { get; set; } = amount;
-        public string DiagnosisCode { get; set; } = diagnosisCode;
-        public string Status { get; set; } = status;
+        public int Id { get; set; }
+        public string ProviderName { get; set; }
+        public decimal Amount { get; set; }
+        public string DiagnosisCode { get; set; }
+        public string Status { get; set; }
+
+        public Claim(int id,
+                    string providerName,
+                    decimal amount,
+                    string diagnosisCode,
+                    string status)
+        {
+            Id = id;
+            ProviderName = providerName;
+            Amount = amount;
+            DiagnosisCode = diagnosisCode;
+            Status = status;
+        }
+
+        public bool IsValid() => this.Amount > 0 && CodeIsValid();
+
+        private bool CodeIsValid()
+        {
+            return Regex.IsMatch(
+                this.DiagnosisCode,
+                "^[A-Z][0-9]{2,4}$"
+            );
+        }
     }
 }
