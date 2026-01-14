@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="./src/ClaimsProcessor.Application/ClaimsProcessor.Application.csproj" />
+  <Project Path="./src/ClaimsProcessor.Domain/ClaimsProcessor.Domain.csproj" />
+  <Project Path="./src/ClaimsProcessor.API/ClaimsProcessor.API.csproj" />
+</Solution>
