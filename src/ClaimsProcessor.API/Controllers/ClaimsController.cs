@@ -1,4 +1,5 @@
 using ClaimsProcessor.API.DTOs;
+using ClaimsProcessor.API.Mapping;
 using ClaimsProcessor.Application.UseCases;
 using ClaimsProcessor.Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -18,10 +19,13 @@ namespace ClaimsProcessor.Controllers
         }
 
         [HttpPost(Name = "claims/validate")]
-        public ValidateClaimAPIResponse Validate(IEnumerable<ClaimDto> claims)
+        public ValidateClaimResponseDto Validate(IEnumerable<ClaimDto> claimsDto)
         {
-            _validate.Execute(new List<Claim>());
-            return new ValidateClaimAPIResponse();
+            var claimsModel = claimsDto.Select(c => ValidateClaimDtoMapping.ToModel(c));
+
+            var response = _validate.Execute(claimsModel);
+
+            return ValidateClaimResponseMapping.ToDto(response);
         }
     }
 }
