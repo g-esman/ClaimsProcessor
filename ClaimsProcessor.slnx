@@ -1,5 +1,8 @@
 <Solution>
-  <Project Path="./src/ClaimsProcessor.Application/ClaimsProcessor.Application.csproj" />
-  <Project Path="./src/ClaimsProcessor.Domain/ClaimsProcessor.Domain.csproj" />
-  <Project Path="./src/ClaimsProcessor.API/ClaimsProcessor.API.csproj" />
+  <Folder Name="/Test/">
+    <Project Path="ClaimsProcessor.Application.Test/ClaimsProcessor.Test.csproj" Id="90167176-987f-43a3-b875-0e8de2c7e5a0" />
+  </Folder>
+  <Project Path="src/ClaimsProcessor.API/ClaimsProcessor.API.csproj" />
+  <Project Path="src/ClaimsProcessor.Application/ClaimsProcessor.Application.csproj" />
+  <Project Path="src/ClaimsProcessor.Domain/ClaimsProcessor.Domain.csproj" />
 </Solution>

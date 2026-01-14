@@ -12,7 +12,7 @@ namespace ClaimsProcessor.Application.UseCases
             response.TotalClaims = claim.Count();
             response.ValidClaims = claim.Count(c => c.IsValid());
             response.InvalidClaims = response.TotalClaims - response.ValidClaims;
-            response.TotalApprovedAmount = claim.Where(c => c.IsValid()).Sum(c => c.Amount);
+            response.TotalApprovedAmount = claim.Where(c => c.IsValidAndApproved()).Sum(c => c.Amount);
 
             return response;
         }

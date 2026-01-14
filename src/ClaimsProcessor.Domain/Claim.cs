@@ -25,6 +25,8 @@ namespace ClaimsProcessor.Domain
 
         public bool IsValid() => this.Amount > 0 && CodeIsValid();
 
+        public bool IsValidAndApproved() => IsValid() && string.Equals(this.Status,"Approved",StringComparison.OrdinalIgnoreCase);
+
         private bool CodeIsValid()
         {
             return Regex.IsMatch(
