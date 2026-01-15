@@ -10,7 +10,7 @@ namespace ClaimsProcessor.API.Mapping
         {
             return new Claim(
                 dto.Id,
-                dto.ProviderName,
+                dto.Provider,
                 dto.Amount,
                 dto.DiagnosisCode,
                 dto.Status

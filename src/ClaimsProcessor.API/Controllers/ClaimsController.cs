@@ -10,12 +10,10 @@ namespace ClaimsProcessor.Controllers
     [Route("[controller]")]
     public class ClaimsController : ControllerBase
     {
-
-        private readonly ILogger<ClaimsController> _logger;
         private readonly IValidateClaim _validate;
-        public ClaimsController(ILogger<ClaimsController> logger)
+        public ClaimsController(IValidateClaim validate)
         {
-            _logger = logger;
+            _validate = validate;
         }
 
         [HttpPost(Name = "claims/validate")]

@@ -28,7 +28,6 @@ namespace ClaimsProcessor.Test.Application
             {
                 new Claim(1, "prover1", 1, "A01", "Approved"),
                 new Claim(2, "prover2", 2, "A01", "Approved"),
-                new Claim(3, "prover3", 0, "A01", "Approved")
             };
 
             var useCase = new ValidateClaim();
@@ -36,6 +35,7 @@ namespace ClaimsProcessor.Test.Application
             var result = useCase.Execute(claims);
 
             Assert.Equal(2, result.ValidClaims);
+            Assert.Equal(0, result.InvalidClaims);
         }
 
         [Fact]
@@ -43,7 +43,6 @@ namespace ClaimsProcessor.Test.Application
         {
             var claims = new List<Claim>
             {
-                new Claim(1, "prover1", 1, "A01", "Approved"),
                 new Claim(2, "prover2", -3, "A01", "Approved"),
                 new Claim(3, "prover3", 0, "A01", "Approved")
             };
@@ -53,6 +52,22 @@ namespace ClaimsProcessor.Test.Application
             var result = useCase.Execute(claims);
 
             Assert.Equal(2, result.InvalidClaims);
+            Assert.Equal(0, result.ValidClaims);
+        }
+
+        [Fact]
+        public void Execute_should_return_total_approved_amount_0()
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(3, "prover3", 4, "A01", "Rejected"),
+            };
+
+            var useCase = new ValidateClaim();
+
+            var result = useCase.Execute(claims);
+
+            Assert.Equal(0, result.TotalApprovedAmount);
         }
 
         [Fact]
@@ -60,17 +75,15 @@ namespace ClaimsProcessor.Test.Application
         {
             var claims = new List<Claim>
             {
-                new Claim(1, "prover1", 1, "A01", "Approved"),
-                new Claim(2, "prover2", 2, "A01", "approved"),
-                new Claim(3, "prover3", 4, "A01", "Rejected"),
-                new Claim(4, "prover2", 0, "A01", "Approved")
+                new Claim(1,"Clinic A",(decimal)100.50,"A01","approved"),
+                new Claim(2,"Clinic B",(decimal)-50,"123","Pending")
             };
 
             var useCase = new ValidateClaim();
 
             var result = useCase.Execute(claims);
 
-            Assert.Equal(3, result.TotalApprovedAmount);
+            Assert.Equal((decimal)100.50, result.TotalApprovedAmount);
         }
     }
 }

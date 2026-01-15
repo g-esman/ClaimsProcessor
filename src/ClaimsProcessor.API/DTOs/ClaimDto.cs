@@ -7,7 +7,7 @@ namespace ClaimsProcessor.API.DTOs
         [Required]
         public int Id { get; init; }
         [Required]
-        public string ProviderName { get; init; } = string.Empty;
+        public string Provider { get; init; } = string.Empty;
         [Required]
         public decimal Amount { get; init; }
         [Required]

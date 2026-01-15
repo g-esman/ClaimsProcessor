@@ -7,11 +7,12 @@
             ValidClaims = validClaims;
             TotalClaims = totalClaims;
             InvalidClaims = invalidClaims;
+            TotalApprovedAmount = totalApprovedAmount;
         }
 
         public int TotalClaims { get; init; }
         public int ValidClaims { get; init; }
         public int InvalidClaims { get; init; }
-        public int TotalApprovedAmount { get; init; }
+        public decimal TotalApprovedAmount { get; init; }
     }
 }
