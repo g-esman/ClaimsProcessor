@@ -17,7 +17,7 @@ namespace ClaimsProcessor.Controllers
             _validate = validate;
         }
 
-        [HttpPost(Name = "claims/validate")]
+        [HttpPost("validate")]
         public ValidateClaimResponseDto Validate([FromBody] IEnumerable<ClaimDto> claimsDto)
         {
             if (claimsDto.Count() == 0)

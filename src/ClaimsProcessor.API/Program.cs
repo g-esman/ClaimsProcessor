@@ -7,6 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplication();
 
 builder.Services.AddControllers();
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.LowercaseUrls = true;
+});
+
 builder.Services.AddModelValidation();
 builder.Services.AddExceptionFilterConfiguration();
 
