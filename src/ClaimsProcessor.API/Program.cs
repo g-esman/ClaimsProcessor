@@ -1,3 +1,4 @@
+using ClaimsProcessor.API.Handler;
 using ClaimsProcessor.Application;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplication();
 
 builder.Services.AddControllers();
+builder.Services.AddModelValidation();
+builder.Services.AddExceptionFilterConfiguration();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
